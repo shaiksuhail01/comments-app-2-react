@@ -19,13 +19,22 @@ const initialContainerBackgroundClassNames = [
 const todoItems = localStorage.getItem('commentsList')
 const parseItems = JSON.parse(todoItems)
 
+let finalParseItems
+
+if (parseItems === null) {
+  finalParseItems = []
+} else {
+  finalParseItems = parseItems
+}
+
 class Comments extends Component {
   state = {
-    commentsList: parseItems,
+    commentsList: finalParseItems,
     name: '',
     comments: '',
-    commentCount: parseItems.length,
+    commentCount: finalParseItems.length,
   }
+
 
   onChangeTextEl = event => {
     this.setState({name: event.target.value})
